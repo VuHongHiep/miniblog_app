@@ -311,3 +311,12 @@ span.picture {
     float: left;
   }
 }
+
+div{
+  align: center;
+  .pagination {
+    li {
+      display: inline;
+    }
+  }
+}
