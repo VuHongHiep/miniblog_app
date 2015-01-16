@@ -1,0 +1,28 @@
+<li id="micropost-<%= entry.id %>">
+  <span class="user"><%= link_to entry.user.name, entry.user %></span>
+  <span class="content"><%= link_to  entry.title, # %></span>
+  <span class="content"><%= entry.body %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(entry.created_at) %> ago.
+    <% if current_user?(entry.user) %>
+    <%= link_to "delete", entry, method: :delete, data: { confirm: "You sure?" } %>
+    <% end %>
+  </span>
+  <span>
+    <li>
+      <% @entry = Entry.find(entry.id)%>
+      <% if @entry.comments.any? %>
+      <h4>Comment (<%= @entry.comments.count %>)</h4>
+      <ol>
+        <%= render @comments %>
+      </ol>
+      <%= will_paginate @comments %>
+      <% end %>
+    </li>
+  </span>
+  <span>
+    <section>
+      <%= render 'shared/comment_form' %>
+    </section>
+  </span>
+</li>
