@@ -12,12 +12,12 @@
 
    <li>
       <% if entry.comments.any? %>
-        <% @comments = entry.comments.paginate(page: params[:page]) %>
+        <% @comments = entry.comments.paginate(page: params[:comment_page], per_page: 2) %>
         <h4>Comment (<%= entry.comments.count %>)</h4>
         <ol>
           <%= render @comments %>
         </ol>
-        <%= will_paginate @comments %>
+        <%= will_paginate @comments, :param_name => 'comment_page' %>
       <% end %>
     </li>
 
